@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Códigos QR</title>
+
+    <!-- Enlace a tu archivo CSS externo -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Librería externa para generar QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <h1>✨ Generador QR ✨</h1>
+        
+        <div class="input-section">
+            <div class="input-wrapper">
+                <input 
+                    type="url" 
+                    id="urlInput" 
+                    class="url-input" 
+                    placeholder="✨ Ingresa tu URL mágica aquí (ej: https://ejemplo.com)"
+                    autocomplete="url"
+                >
+            </div>
+            <div id="errorMessage" class="error-message"></div>
+            <button id="generateBtn" class="generate-btn">
+                🚀 Crear Magia QR
+            </button>
+        </div>
+
+        <div class="qr-section">
+            <div id="qrcode"></div>
+            <div id="placeholderText" class="placeholder-text">
+                🎨 Tu código QR aparecerá aquí como arte digital
+            </div>
+        </div>
+
+        <div id="actions" class="actions">
+            <button id="downloadBtn" class="action-btn download-btn">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+                Descargar
+            </button>
+            <button id="copyBtn" class="action-btn copy-btn">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                Copiar
+            </button>
+            <button id="clearBtn" class="action-btn clear-btn">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+                Limpiar
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Enlace a tu archivo JS externo -->
+    <script src="scripts.js"></script>
+</body>
+</html>
