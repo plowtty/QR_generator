@@ -42,7 +42,7 @@ export function downloadCanvasAsPng(canvas, filename) {
     return new Promise((resolve, reject) => {
         canvas.toBlob((blob) => {
             if (!blob) {
-                reject(new Error('No se pudo exportar el PNG'));
+                reject(new Error('Could not export PNG'));
                 return;
             }
 

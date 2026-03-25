@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Generador QR con personalización avanzada, múltiples tipos de contenido, historial y exportación en PNG y SVG." />
+    <meta name="description" content="QR generator with advanced customization, multiple content types, history, and PNG/SVG export." />
     <meta name="theme-color" content="#7b8fa1" />
-    <title>QR Generator Studio | Demo Web</title>
+    <title>QR Generator Studio</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -22,7 +22,7 @@
             <header class="hero">
                 <h1 id="page-title" class="hero-title">QR Generator Studio</h1>
                 <p class="hero-subtitle">
-                    Genera códigos QR para URL, texto, Wi‑Fi, teléfono, email o vCard con una interfaz más limpia, flexible y orientada a uso real.
+                    Generate QR codes for URL, text, Wi‑Fi, phone, email, or vCard with a clean, flexible interface built for real use.
                 </p>
             </header>
 
@@ -30,19 +30,19 @@
                 <form id="qrForm" class="panel-form" novalidate>
                     <section class="panel form-section form-section--content" aria-labelledby="content-title">
                         <div class="section-head">
-                            <h2 id="content-title">Contenido</h2>
-                            <p>Elige un tipo y completa solo la información necesaria para ese formato.</p>
+                            <h2 id="content-title">Content</h2>
+                            <p>Choose a type and fill in only the information needed for that format.</p>
                         </div>
 
-                        <div id="contentTypePicker" class="type-picker" role="tablist" aria-label="Tipos de contenido"></div>
+                        <div id="contentTypePicker" class="type-picker" role="tablist" aria-label="Content types"></div>
                         <input id="contentType" type="hidden" value="url" />
 
                         <div class="content-brief">
                             <div>
-                                <p id="contentTypeEyebrow" class="content-brief__eyebrow">Tipo seleccionado</p>
+                                <p id="contentTypeEyebrow" class="content-brief__eyebrow">Selected type</p>
                                 <h3 id="contentTypeTitle" class="content-brief__title">URL</h3>
                             </div>
-                            <p id="contentTypeDescription" class="content-brief__description">Genera un QR que abre directamente un enlace web en el navegador.</p>
+                            <p id="contentTypeDescription" class="content-brief__description">Generate a QR that opens a web link directly in the browser.</p>
                         </div>
 
                         <div id="dynamicFields" class="dynamic-fields" aria-live="polite"></div>
@@ -50,12 +50,12 @@
 
                     <section class="panel form-section form-section--custom" aria-labelledby="custom-title">
                         <div class="section-head">
-                            <h2 id="custom-title">Personalización</h2>
-                            <p>Ajusta la estética y densidad del código sin mezclarlo con el contenido.</p>
+                            <h2 id="custom-title">Customization</h2>
+                            <p>Adjust style and density without mixing it with content setup.</p>
                         </div>
 
                         <div class="slider-field">
-                            <label class="field-label" for="sizeRange">Tamaño</label>
+                            <label class="field-label" for="sizeRange">Size</label>
                             <div class="slider-row">
                                 <input id="sizeRange" class="field-range" type="range" min="180" max="420" step="10" value="260" data-option="size" />
                                 <span id="sizeValue" class="range-value">260px</span>
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="slider-field">
-                            <label class="field-label" for="marginRange">Margen</label>
+                            <label class="field-label" for="marginRange">Margin</label>
                             <div class="slider-row">
                                 <input id="marginRange" class="field-range" type="range" min="0" max="8" step="1" value="2" data-option="margin" />
                                 <span id="marginValue" class="range-value">2</span>
@@ -72,28 +72,28 @@
 
                         <div class="two-columns">
                             <div>
-                                <label class="field-label" for="darkColor">Color principal</label>
+                                <label class="field-label" for="darkColor">Primary color</label>
                                 <input id="darkColor" class="field-control field-color" type="color" value="#1f2937" data-option="darkColor" />
                             </div>
                             <div>
-                                <label class="field-label" for="lightColor">Color fondo</label>
+                                <label class="field-label" for="lightColor">Background color</label>
                                 <input id="lightColor" class="field-control field-color" type="color" value="#ffffff" data-option="lightColor" />
                             </div>
                         </div>
 
-                        <label class="field-label" for="errorCorrectionLevel">Corrección de errores</label>
+                        <label class="field-label" for="errorCorrectionLevel">Error correction</label>
                         <select id="errorCorrectionLevel" class="field-control field-select" data-option="errorCorrectionLevel">
-                            <option value="L">Baja (L)</option>
-                            <option value="M">Media (M)</option>
-                            <option value="Q">Alta (Q)</option>
-                            <option value="H" selected>Muy alta (H)</option>
+                            <option value="L">Low (L)</option>
+                            <option value="M">Medium (M)</option>
+                            <option value="Q">High (Q)</option>
+                            <option value="H" selected>Very high (H)</option>
                         </select>
                     </section>
 
                     <section class="panel form-actions form-section--submit">
                         <div id="errorMessage" class="error-message" hidden></div>
                         <button id="generateBtn" class="generate-btn" type="submit">
-                            <span class="button-label">Generar QR</span>
+                            <span class="button-label">Generate QR</span>
                         </button>
                     </section>
                 </form>
@@ -101,40 +101,40 @@
                 <aside class="panel panel-preview">
                     <section class="preview-card" aria-labelledby="preview-title">
                         <div class="section-head section-head--compact">
-                            <h2 id="preview-title">Vista previa</h2>
-                            <p id="previewMeta">Aún no has generado ningún código.</p>
+                            <h2 id="preview-title">Preview</h2>
+                            <p id="previewMeta">You have not generated any code yet.</p>
                         </div>
 
                         <div class="qr-section">
                             <div id="qrcode" aria-live="polite"></div>
-                            <p id="placeholderText" class="placeholder-text">Tu código QR aparecerá aquí.</p>
+                            <p id="placeholderText" class="placeholder-text">Your QR code will appear here.</p>
                         </div>
 
                         <div id="actions" class="actions" hidden>
-                            <button id="downloadPngBtn" class="action-btn download-btn" type="button">Descargar PNG</button>
-                            <button id="downloadSvgBtn" class="action-btn info-btn" type="button">Descargar SVG</button>
-                            <button id="copyBtn" class="action-btn copy-btn" type="button">Copiar contenido</button>
-                            <button id="favoriteBtn" class="action-btn favorite-btn" type="button">Guardar favorito</button>
-                            <button id="openBtn" class="action-btn secondary-btn" type="button">Abrir acción</button>
-                            <button id="clearBtn" class="action-btn clear-btn" type="button">Limpiar</button>
+                            <button id="downloadPngBtn" class="action-btn download-btn" type="button">Download PNG</button>
+                            <button id="downloadSvgBtn" class="action-btn info-btn" type="button">Download SVG</button>
+                            <button id="copyBtn" class="action-btn copy-btn" type="button">Copy content</button>
+                            <button id="favoriteBtn" class="action-btn favorite-btn" type="button">Save favorite</button>
+                            <button id="openBtn" class="action-btn secondary-btn" type="button">Open action</button>
+                            <button id="clearBtn" class="action-btn clear-btn" type="button">Clear</button>
                         </div>
                     </section>
 
                     <section class="panel mini-panel" aria-labelledby="history-title">
                         <div class="section-head section-head--compact">
-                            <h2 id="history-title">Recientes</h2>
-                            <p>Recupera configuraciones recientes sin rehacer el formulario.</p>
+                            <h2 id="history-title">Recent</h2>
+                            <p>Reuse recent configurations without filling the form again.</p>
                         </div>
-                        <p id="emptyHistory" class="empty-state">No has generado códigos todavía.</p>
+                        <p id="emptyHistory" class="empty-state">You have not generated any codes yet.</p>
                         <div id="historyList" class="history-list"></div>
                     </section>
 
                     <section class="panel mini-panel" aria-labelledby="favorites-title">
                         <div class="section-head section-head--compact">
-                            <h2 id="favorites-title">Favoritos</h2>
-                            <p>Guarda configuraciones clave para reutilizarlas más rápido.</p>
+                            <h2 id="favorites-title">Favorites</h2>
+                            <p>Save key configurations to reuse them faster.</p>
                         </div>
-                        <p id="emptyFavorites" class="empty-state">Todavía no tienes favoritos.</p>
+                        <p id="emptyFavorites" class="empty-state">You do not have favorites yet.</p>
                         <div id="favoriteList" class="history-list"></div>
                     </section>
                 </aside>

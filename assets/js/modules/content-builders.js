@@ -1,8 +1,8 @@
 const contentTypeLabels = {
     url: 'URL',
-    text: 'Texto',
+    text: 'Text',
     wifi: 'Wi‑Fi',
-    phone: 'Teléfono',
+    phone: 'Phone',
     email: 'Email',
     vcard: 'vCard'
 };
@@ -30,7 +30,7 @@ function escapeVCard(value) {
 
 function buildUrlPayload(fields) {
     if (!fields.url?.trim()) {
-        return { valid: false, message: 'Ingresa una URL para generar el código.' };
+        return { valid: false, message: 'Enter a URL to generate the code.' };
     }
 
     const normalizedUrl = normalizeUrl(fields.url);
@@ -41,7 +41,7 @@ function buildUrlPayload(fields) {
             throw new Error('Invalid URL');
         }
     } catch {
-        return { valid: false, message: 'La URL no es válida.' };
+        return { valid: false, message: 'The URL is not valid.' };
     }
 
     return {
@@ -54,7 +54,7 @@ function buildUrlPayload(fields) {
 
 function buildTextPayload(fields) {
     if (!fields.text?.trim()) {
-        return { valid: false, message: 'Escribe el texto que quieres convertir a QR.' };
+        return { valid: false, message: 'Write the text you want to convert into a QR code.' };
     }
 
     return {
@@ -66,7 +66,7 @@ function buildTextPayload(fields) {
 
 function buildWifiPayload(fields) {
     if (!fields.ssid?.trim()) {
-        return { valid: false, message: 'El nombre de la red Wi‑Fi es obligatorio.' };
+        return { valid: false, message: 'The Wi‑Fi network name is required.' };
     }
 
     const security = fields.security || 'WPA';
@@ -88,7 +88,7 @@ function buildWifiPayload(fields) {
 
 function buildPhonePayload(fields) {
     if (!fields.phone?.trim()) {
-        return { valid: false, message: 'Ingresa un número de teléfono.' };
+        return { valid: false, message: 'Enter a phone number.' };
     }
 
     const normalizedPhone = fields.phone.replace(/\s+/g, '');
@@ -102,7 +102,7 @@ function buildPhonePayload(fields) {
 
 function buildEmailPayload(fields) {
     if (!fields.email?.trim()) {
-        return { valid: false, message: 'Ingresa un correo electrónico.' };
+        return { valid: false, message: 'Enter an email address.' };
     }
 
     const search = new URLSearchParams();
@@ -127,7 +127,7 @@ function buildEmailPayload(fields) {
 
 function buildVCardPayload(fields) {
     if (!fields.firstName?.trim() && !fields.lastName?.trim()) {
-        return { valid: false, message: 'Agrega al menos un nombre o apellido para la vCard.' };
+        return { valid: false, message: 'Add at least a first name or last name for the vCard.' };
     }
 
     const fullName = [fields.firstName?.trim(), fields.lastName?.trim()].filter(Boolean).join(' ');
@@ -189,12 +189,12 @@ export function buildContentPayload(type, fields) {
     return {
         ...result,
         type,
-        typeLabel: contentTypeLabels[type] || 'Contenido'
+        typeLabel: contentTypeLabels[type] || 'Content'
     };
 }
 
 export function getContentTypeLabel(type) {
-    return contentTypeLabels[type] || 'Contenido';
+    return contentTypeLabels[type] || 'Content';
 }
 
 export function supportsOpenAction(payload) {

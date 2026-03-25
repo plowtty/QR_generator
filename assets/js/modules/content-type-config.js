@@ -4,19 +4,19 @@ export const contentTypeConfigs = {
     url: {
         label: 'URL',
         icon: 'WEB',
-        shortDescription: 'Perfecto para sitios, portfolios o demos.',
-        detail: 'Genera un QR que abre directamente un enlace web en el navegador.',
+        shortDescription: 'Perfect for websites, portfolios, or demos.',
+        detail: 'Generate a QR that opens a web link directly in the browser.',
         groups: [
             {
-                title: 'Destino',
-                description: 'Usa la URL completa o solo el dominio; se completará `https://` si hace falta.',
+                title: 'Destination',
+                description: 'Use the full URL or just the domain; `https://` will be added if missing.',
                 fields: [
                     {
                         name: 'url',
-                        label: 'Enlace del sitio',
+                        label: 'Website link',
                         type: 'url',
-                        placeholder: 'https://ejemplo.com',
-                        help: 'Ideal para páginas, tiendas, demos o perfiles sociales.',
+                        placeholder: 'https://example.com',
+                        help: 'Ideal for pages, stores, demos, or social profiles.',
                         width: 'full'
                     }
                 ]
@@ -24,21 +24,21 @@ export const contentTypeConfigs = {
         ]
     },
     text: {
-        label: 'Texto',
+        label: 'Text',
         icon: 'TXT',
-        shortDescription: 'Comparte mensajes, notas o instrucciones.',
-        detail: 'Convierte cualquier bloque de texto en un QR escaneable.',
+        shortDescription: 'Share messages, notes, or instructions.',
+        detail: 'Turn any block of text into a scannable QR code.',
         groups: [
             {
-                title: 'Mensaje',
-                description: 'Este formato es útil para indicaciones, promociones o textos cortos.',
+                title: 'Message',
+                description: 'This format is useful for instructions, promotions, or short text.',
                 fields: [
                     {
                         name: 'text',
-                        label: 'Texto del QR',
+                        label: 'QR text',
                         type: 'textarea',
-                        placeholder: 'Escribe aquí el contenido que quieres codificar…',
-                        help: 'Mientras más largo sea el texto, más denso será el código QR.',
+                        placeholder: 'Type the content you want to encode here…',
+                        help: 'The longer the text, the denser the QR code will be.',
                         width: 'full'
                     }
                 ]
@@ -48,48 +48,48 @@ export const contentTypeConfigs = {
     wifi: {
         label: 'Wi‑Fi',
         icon: 'NET',
-        shortDescription: 'Facilita la conexión a una red.',
-        detail: 'Permite que alguien escanee y configure una red Wi‑Fi sin escribirla manualmente.',
+        shortDescription: 'Make joining a network easier.',
+        detail: 'Let someone scan and connect to a Wi‑Fi network without typing credentials manually.',
         groups: [
             {
-                title: 'Red',
-                description: 'Completa los datos básicos de la red inalámbrica.',
+                title: 'Network',
+                description: 'Fill in the basic wireless network details.',
                 fields: [
                     {
                         name: 'ssid',
-                        label: 'Nombre de la red',
+                        label: 'Network name',
                         type: 'text',
-                        placeholder: 'MiWiFi',
-                        help: 'Es el nombre visible del Wi‑Fi.',
+                        placeholder: 'MyWiFi',
+                        help: 'This is the visible Wi‑Fi name.',
                         width: 'full'
                     },
                     {
                         name: 'security',
-                        label: 'Tipo de seguridad',
+                        label: 'Security type',
                         type: 'select',
                         options: [
                             { value: 'WPA', label: 'WPA / WPA2' },
                             { value: 'WEP', label: 'WEP' },
-                            { value: 'nopass', label: 'Sin contraseña' }
+                            { value: 'nopass', label: 'No password' }
                         ],
                         width: 'half'
                     },
                     {
                         name: 'hidden',
-                        label: '¿Red oculta?',
+                        label: 'Hidden network?',
                         type: 'select',
                         options: [
                             { value: 'false', label: 'No' },
-                            { value: 'true', label: 'Sí' }
+                            { value: 'true', label: 'Yes' }
                         ],
                         width: 'half'
                     },
                     {
                         name: 'password',
-                        label: 'Contraseña',
+                        label: 'Password',
                         type: 'text',
                         placeholder: '••••••••',
-                        help: 'Si la red es abierta, puedes dejar este campo vacío.',
+                        help: 'If the network is open, you can leave this field empty.',
                         width: 'full'
                     }
                 ]
@@ -97,21 +97,21 @@ export const contentTypeConfigs = {
         ]
     },
     phone: {
-        label: 'Teléfono',
+        label: 'Phone',
         icon: 'TEL',
-        shortDescription: 'Llama con un solo escaneo.',
-        detail: 'Genera un QR que abre la app de llamadas con el número precargado.',
+        shortDescription: 'Call with a single scan.',
+        detail: 'Generate a QR that opens the dialer app with the number prefilled.',
         groups: [
             {
-                title: 'Contacto rápido',
-                description: 'Incluye el prefijo internacional para que funcione mejor en cualquier dispositivo.',
+                title: 'Quick contact',
+                description: 'Include the international prefix so it works better across devices.',
                 fields: [
                     {
                         name: 'phone',
-                        label: 'Número telefónico',
+                        label: 'Phone number',
                         type: 'tel',
                         placeholder: '+52 555 123 4567',
-                        help: 'Útil para tarjetas físicas, negocios o atención al cliente.',
+                        help: 'Useful for business cards, stores, or customer support.',
                         width: 'full'
                     }
                 ]
@@ -121,38 +121,38 @@ export const contentTypeConfigs = {
     email: {
         label: 'Email',
         icon: 'MAIL',
-        shortDescription: 'Abre un correo listo para enviar.',
-        detail: 'El QR llenará destinatario, asunto y mensaje en la app de correo del usuario.',
+        shortDescription: 'Open an email ready to send.',
+        detail: 'The QR will prefill recipient, subject, and message in the user email app.',
         groups: [
             {
-                title: 'Destinatario',
-                description: 'Define quién recibirá el correo.',
+                title: 'Recipient',
+                description: 'Define who will receive the email.',
                 fields: [
                     {
                         name: 'email',
-                        label: 'Correo electrónico',
+                        label: 'Email address',
                         type: 'email',
-                        placeholder: 'hola@ejemplo.com',
+                        placeholder: 'hello@example.com',
                         width: 'full'
                     }
                 ]
             },
             {
-                title: 'Mensaje inicial',
-                description: 'Opcionalmente, deja el correo casi listo para enviarse.',
+                title: 'Initial message',
+                description: 'Optionally leave the email almost ready to send.',
                 fields: [
                     {
                         name: 'subject',
-                        label: 'Asunto',
+                        label: 'Subject',
                         type: 'text',
-                        placeholder: 'Quiero más información',
+                        placeholder: 'I would like more information',
                         width: 'full'
                     },
                     {
                         name: 'body',
-                        label: 'Mensaje',
+                        label: 'Message',
                         type: 'textarea',
-                        placeholder: 'Hola, me interesa conocer más sobre tu servicio…',
+                        placeholder: 'Hi, I am interested in learning more about your service…',
                         width: 'full'
                     }
                 ]
@@ -162,50 +162,50 @@ export const contentTypeConfigs = {
     vcard: {
         label: 'vCard',
         icon: 'ID',
-        shortDescription: 'Comparte un contacto completo.',
-        detail: 'Ideal para tarjetas de presentación digitales, networking y perfiles profesionales.',
+        shortDescription: 'Share a full contact profile.',
+        detail: 'Ideal for digital business cards, networking, and professional profiles.',
         groups: [
             {
-                title: 'Identidad',
-                description: 'Los datos principales de la persona o marca personal.',
+                title: 'Identity',
+                description: 'Main details for a person or personal brand.',
                 fields: [
                     {
                         name: 'firstName',
-                        label: 'Nombre',
+                        label: 'First name',
                         type: 'text',
                         placeholder: 'Sleider',
                         width: 'half'
                     },
                     {
                         name: 'lastName',
-                        label: 'Apellido',
+                        label: 'Last name',
                         type: 'text',
-                        placeholder: 'Pérez',
+                        placeholder: 'Perez',
                         width: 'half'
                     },
                     {
                         name: 'organization',
-                        label: 'Empresa o proyecto',
+                        label: 'Company or project',
                         type: 'text',
                         placeholder: 'QR Studio',
                         width: 'half'
                     },
                     {
                         name: 'title',
-                        label: 'Cargo o rol',
+                        label: 'Position or role',
                         type: 'text',
-                        placeholder: 'Diseñador / Developer',
+                        placeholder: 'Designer / Developer',
                         width: 'half'
                     }
                 ]
             },
             {
-                title: 'Canales de contacto',
-                description: 'Haz que te contacten desde distintos medios.',
+                title: 'Contact channels',
+                description: 'Let people contact you through different channels.',
                 fields: [
                     {
                         name: 'phone',
-                        label: 'Teléfono',
+                        label: 'Phone',
                         type: 'tel',
                         placeholder: '+52 555 123 4567',
                         width: 'half'
@@ -214,34 +214,34 @@ export const contentTypeConfigs = {
                         name: 'email',
                         label: 'Email',
                         type: 'email',
-                        placeholder: 'hola@ejemplo.com',
+                        placeholder: 'hello@example.com',
                         width: 'half'
                     },
                     {
                         name: 'website',
-                        label: 'Sitio web',
+                        label: 'Website',
                         type: 'text',
-                        placeholder: 'midemo.com',
+                        placeholder: 'mydemo.com',
                         width: 'full'
                     }
                 ]
             },
             {
                 title: 'Extras',
-                description: 'Complementa la ficha con dirección y una nota breve.',
+                description: 'Complete the profile with an address and a short note.',
                 fields: [
                     {
                         name: 'address',
-                        label: 'Dirección',
+                        label: 'Address',
                         type: 'text',
-                        placeholder: 'Ciudad, Estado, País',
+                        placeholder: 'City, State, Country',
                         width: 'full'
                     },
                     {
                         name: 'note',
-                        label: 'Nota',
+                        label: 'Note',
                         type: 'textarea',
-                        placeholder: 'Especialista en branding, interfaces y experiencias digitales.',
+                        placeholder: 'Specialist in branding, interfaces, and digital experiences.',
                         width: 'full'
                     }
                 ]

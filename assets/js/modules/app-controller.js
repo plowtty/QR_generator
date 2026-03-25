@@ -139,7 +139,7 @@ export class QRApp {
         this.renderDynamicFields();
         this.hideError();
         this.saveDraft();
-        this.announce(`Formulario cambiado a ${getContentTypeLabel(type)}.`);
+        this.announce(`Form changed to ${getContentTypeLabel(type)}.`);
     }
 
     handleInputChange(event) {
@@ -321,10 +321,10 @@ export class QRApp {
             this.updateOpenActionState();
             this.syncFavoriteButton();
             this.addToHistory(payload);
-            this.announce(`Código QR generado para ${getContentTypeLabel(payload.type)}.`);
-            this.showToast('QR generado con éxito.', 'success');
+            this.announce(`QR code generated for ${getContentTypeLabel(payload.type)}.`);
+            this.showToast('QR generated successfully.', 'success');
         } catch {
-            this.showError('No se pudo generar el código QR. Intenta de nuevo.');
+            this.showError('Could not generate the QR code. Try again.');
             this.placeholderText.hidden = false;
         } finally {
             this.setGeneratingState(false);
@@ -334,7 +334,7 @@ export class QRApp {
     setGeneratingState(isGenerating) {
         this.generateButton.disabled = isGenerating;
         this.generateButton.classList.toggle('loading', isGenerating);
-        this.generateButton.querySelector('.button-label').textContent = isGenerating ? 'Generando...' : 'Generar QR';
+        this.generateButton.querySelector('.button-label').textContent = isGenerating ? 'Generating...' : 'Generate QR';
     }
 
     addToHistory(payload) {
@@ -361,8 +361,8 @@ export class QRApp {
 
     renderHistory() {
         const favorites = this.history.filter((entry) => entry.favorite);
-        this.renderHistoryList(this.historyList, this.history, this.emptyHistory, 'No has generado códigos todavía.');
-        this.renderHistoryList(this.favoriteList, favorites, this.emptyFavorites, 'Todavía no tienes favoritos.');
+        this.renderHistoryList(this.historyList, this.history, this.emptyHistory, 'You have not generated any codes yet.');
+        this.renderHistoryList(this.favoriteList, favorites, this.emptyFavorites, 'You do not have favorites yet.');
     }
 
     renderHistoryList(container, entries, emptyStateNode, emptyMessage) {
@@ -387,7 +387,7 @@ export class QRApp {
 
             const meta = document.createElement('p');
             meta.className = 'history-item__meta';
-            meta.textContent = new Date(entry.createdAt).toLocaleString('es-MX');
+            meta.textContent = new Date(entry.createdAt).toLocaleString('en-US');
 
             content.append(type, title, meta);
 
@@ -399,7 +399,7 @@ export class QRApp {
             loadButton.className = 'history-btn';
             loadButton.dataset.action = 'load';
             loadButton.dataset.entryId = entry.id;
-            loadButton.textContent = 'Usar';
+            loadButton.textContent = 'Use';
 
             const favoriteButton = document.createElement('button');
             favoriteButton.type = 'button';
@@ -458,20 +458,20 @@ export class QRApp {
         this.state.options = { ...this.state.options, ...entry.options };
         this.hydrateForm();
         this.saveDraft();
-        this.showToast('Configuración cargada desde el historial.', 'info');
+        this.showToast('Configuration loaded from history.', 'info');
         this.generateQr();
     }
 
     syncFavoriteButton() {
         if (!this.currentPayload) {
             this.favoriteButton.disabled = true;
-            this.favoriteButton.textContent = 'Guardar favorito';
+            this.favoriteButton.textContent = 'Save favorite';
             return;
         }
 
         const matchingEntry = this.findMatchingEntry(this.currentPayload.text);
         this.favoriteButton.disabled = false;
-        this.favoriteButton.textContent = matchingEntry?.favorite ? 'Quitar favorito' : 'Guardar favorito';
+        this.favoriteButton.textContent = matchingEntry?.favorite ? 'Remove favorite' : 'Save favorite';
     }
 
     toggleCurrentFavorite() {
@@ -487,7 +487,7 @@ export class QRApp {
         this.history = toggleFavorite(entry.id);
         this.renderHistory();
         this.syncFavoriteButton();
-        this.showToast(entry.favorite ? 'Favorito eliminado.' : 'Favorito guardado.', 'success');
+        this.showToast(entry.favorite ? 'Favorite removed.' : 'Favorite saved.', 'success');
     }
 
     updateOpenActionState() {
@@ -498,49 +498,49 @@ export class QRApp {
 
     getOpenActionLabel() {
         if (!this.currentPayload) {
-            return 'Abrir acción';
+            return 'Open action';
         }
 
         if (this.currentPayload.type === 'phone') {
-            return 'Llamar';
+            return 'Call';
         }
 
         if (this.currentPayload.type === 'email') {
-            return 'Abrir email';
+            return 'Open email';
         }
 
         if (this.currentPayload.type === 'url') {
-            return 'Abrir enlace';
+            return 'Open link';
         }
 
-        return 'Abrir acción';
+        return 'Open action';
     }
 
     async handleDownloadPng() {
         if (!this.currentRender?.canvas) {
-            this.showToast('Primero genera un código QR.', 'error');
+            this.showToast('Generate a QR code first.', 'error');
             return;
         }
 
         try {
             await downloadCanvasAsPng(this.currentRender.canvas, this.buildFilename('png'));
-            this.showToast('PNG descargado.', 'success');
+            this.showToast('PNG downloaded.', 'success');
         } catch {
-            this.showToast('No se pudo descargar el PNG.', 'error');
+            this.showToast('Could not download PNG.', 'error');
         }
     }
 
     handleDownloadSvg() {
         if (!this.currentRender?.svgMarkup) {
-            this.showToast('Primero genera un código QR.', 'error');
+            this.showToast('Generate a QR code first.', 'error');
             return;
         }
 
         try {
             downloadSvg(this.currentRender.svgMarkup, this.buildFilename('svg'));
-            this.showToast('SVG descargado.', 'success');
+            this.showToast('SVG downloaded.', 'success');
         } catch {
-            this.showToast('No se pudo descargar el SVG.', 'error');
+            this.showToast('Could not download SVG.', 'error');
         }
     }
 
@@ -551,21 +551,21 @@ export class QRApp {
 
     async copyContent() {
         if (!this.currentPayload?.text) {
-            this.showToast('Primero genera un código QR.', 'error');
+            this.showToast('Generate a QR code first.', 'error');
             return;
         }
 
         try {
             await navigator.clipboard.writeText(this.currentPayload.text);
-            this.showToast('Contenido QR copiado.', 'success');
+            this.showToast('QR content copied.', 'success');
         } catch {
-            this.showToast('No se pudo copiar el contenido.', 'error');
+            this.showToast('Could not copy content.', 'error');
         }
     }
 
     openCurrentAction() {
         if (!supportsOpenAction(this.currentPayload)) {
-            this.showToast('Este contenido no se puede abrir directamente.', 'info');
+            this.showToast('This content cannot be opened directly.', 'info');
             return;
         }
 
@@ -576,12 +576,12 @@ export class QRApp {
         this.qrCodeContainer.innerHTML = '';
         this.placeholderText.hidden = false;
         this.actions.hidden = true;
-        this.previewMeta.textContent = 'Aún no has generado ningún código.';
+        this.previewMeta.textContent = 'You have not generated any code yet.';
         this.currentPayload = null;
         this.currentRender = null;
         this.syncFavoriteButton();
         this.updateOpenActionState();
-        this.announce('Vista previa limpiada.');
+        this.announce('Preview cleared.');
     }
 
     saveDraft() {
