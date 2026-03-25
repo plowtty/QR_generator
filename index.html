@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generador de Códigos QR</title>
-
-    <!-- Enlace a tu archivo CSS externo -->
-    <link rel="stylesheet" href="styles.css" />
-
-    <!-- Librería externa para generar QR -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <meta name="description" content="Generador QR con personalización avanzada, múltiples tipos de contenido, historial y exportación en PNG y SVG." />
+    <meta name="theme-color" content="#7b8fa1" />
+    <title>QR Generator Studio | Demo Web</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
     <div class="bg-animation">
@@ -20,57 +17,134 @@
         <div class="particle"></div>
     </div>
 
-    <div class="container">
-        <h1>✨ Generador QR ✨</h1>
-        
-        <div class="input-section">
-            <div class="input-wrapper">
-                <input 
-                    type="url" 
-                    id="urlInput" 
-                    class="url-input" 
-                    placeholder="✨ Ingresa tu URL mágica aquí (ej: https://ejemplo.com)"
-                    autocomplete="url"
-                >
+    <main class="page-shell">
+        <section class="container" aria-labelledby="page-title">
+            <header class="hero">
+                <h1 id="page-title" class="hero-title">QR Generator Studio</h1>
+                <p class="hero-subtitle">
+                    Genera códigos QR para URL, texto, Wi‑Fi, teléfono, email o vCard con una interfaz más limpia, flexible y orientada a uso real.
+                </p>
+            </header>
+
+            <div class="studio-grid">
+                <form id="qrForm" class="panel-form" novalidate>
+                    <section class="panel form-section form-section--content" aria-labelledby="content-title">
+                        <div class="section-head">
+                            <h2 id="content-title">Contenido</h2>
+                            <p>Elige un tipo y completa solo la información necesaria para ese formato.</p>
+                        </div>
+
+                        <div id="contentTypePicker" class="type-picker" role="tablist" aria-label="Tipos de contenido"></div>
+                        <input id="contentType" type="hidden" value="url" />
+
+                        <div class="content-brief">
+                            <div>
+                                <p id="contentTypeEyebrow" class="content-brief__eyebrow">Tipo seleccionado</p>
+                                <h3 id="contentTypeTitle" class="content-brief__title">URL</h3>
+                            </div>
+                            <p id="contentTypeDescription" class="content-brief__description">Genera un QR que abre directamente un enlace web en el navegador.</p>
+                        </div>
+
+                        <div id="dynamicFields" class="dynamic-fields" aria-live="polite"></div>
+                    </section>
+
+                    <section class="panel form-section form-section--custom" aria-labelledby="custom-title">
+                        <div class="section-head">
+                            <h2 id="custom-title">Personalización</h2>
+                            <p>Ajusta la estética y densidad del código sin mezclarlo con el contenido.</p>
+                        </div>
+
+                        <div class="slider-field">
+                            <label class="field-label" for="sizeRange">Tamaño</label>
+                            <div class="slider-row">
+                                <input id="sizeRange" class="field-range" type="range" min="180" max="420" step="10" value="260" data-option="size" />
+                                <span id="sizeValue" class="range-value">260px</span>
+                            </div>
+                        </div>
+
+                        <div class="slider-field">
+                            <label class="field-label" for="marginRange">Margen</label>
+                            <div class="slider-row">
+                                <input id="marginRange" class="field-range" type="range" min="0" max="8" step="1" value="2" data-option="margin" />
+                                <span id="marginValue" class="range-value">2</span>
+                            </div>
+                        </div>
+
+                        <div class="two-columns">
+                            <div>
+                                <label class="field-label" for="darkColor">Color principal</label>
+                                <input id="darkColor" class="field-control field-color" type="color" value="#1f2937" data-option="darkColor" />
+                            </div>
+                            <div>
+                                <label class="field-label" for="lightColor">Color fondo</label>
+                                <input id="lightColor" class="field-control field-color" type="color" value="#ffffff" data-option="lightColor" />
+                            </div>
+                        </div>
+
+                        <label class="field-label" for="errorCorrectionLevel">Corrección de errores</label>
+                        <select id="errorCorrectionLevel" class="field-control field-select" data-option="errorCorrectionLevel">
+                            <option value="L">Baja (L)</option>
+                            <option value="M">Media (M)</option>
+                            <option value="Q">Alta (Q)</option>
+                            <option value="H" selected>Muy alta (H)</option>
+                        </select>
+                    </section>
+
+                    <section class="panel form-actions form-section--submit">
+                        <div id="errorMessage" class="error-message" hidden></div>
+                        <button id="generateBtn" class="generate-btn" type="submit">
+                            <span class="button-label">Generar QR</span>
+                        </button>
+                    </section>
+                </form>
+
+                <aside class="panel panel-preview">
+                    <section class="preview-card" aria-labelledby="preview-title">
+                        <div class="section-head section-head--compact">
+                            <h2 id="preview-title">Vista previa</h2>
+                            <p id="previewMeta">Aún no has generado ningún código.</p>
+                        </div>
+
+                        <div class="qr-section">
+                            <div id="qrcode" aria-live="polite"></div>
+                            <p id="placeholderText" class="placeholder-text">Tu código QR aparecerá aquí.</p>
+                        </div>
+
+                        <div id="actions" class="actions" hidden>
+                            <button id="downloadPngBtn" class="action-btn download-btn" type="button">Descargar PNG</button>
+                            <button id="downloadSvgBtn" class="action-btn info-btn" type="button">Descargar SVG</button>
+                            <button id="copyBtn" class="action-btn copy-btn" type="button">Copiar contenido</button>
+                            <button id="favoriteBtn" class="action-btn favorite-btn" type="button">Guardar favorito</button>
+                            <button id="openBtn" class="action-btn secondary-btn" type="button">Abrir acción</button>
+                            <button id="clearBtn" class="action-btn clear-btn" type="button">Limpiar</button>
+                        </div>
+                    </section>
+
+                    <section class="panel mini-panel" aria-labelledby="history-title">
+                        <div class="section-head section-head--compact">
+                            <h2 id="history-title">Recientes</h2>
+                            <p>Recupera configuraciones recientes sin rehacer el formulario.</p>
+                        </div>
+                        <p id="emptyHistory" class="empty-state">No has generado códigos todavía.</p>
+                        <div id="historyList" class="history-list"></div>
+                    </section>
+
+                    <section class="panel mini-panel" aria-labelledby="favorites-title">
+                        <div class="section-head section-head--compact">
+                            <h2 id="favorites-title">Favoritos</h2>
+                            <p>Guarda configuraciones clave para reutilizarlas más rápido.</p>
+                        </div>
+                        <p id="emptyFavorites" class="empty-state">Todavía no tienes favoritos.</p>
+                        <div id="favoriteList" class="history-list"></div>
+                    </section>
+                </aside>
             </div>
-            <div id="errorMessage" class="error-message"></div>
-            <button id="generateBtn" class="generate-btn">
-                🚀 Crear Magia QR
-            </button>
-        </div>
+        </section>
+    </main>
 
-        <div class="qr-section">
-            <div id="qrcode"></div>
-            <div id="placeholderText" class="placeholder-text">
-                🎨 Tu código QR aparecerá aquí como arte digital
-            </div>
-        </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <div id="liveRegion" class="visually-hidden" aria-live="assertive"></div>
 
-        <div id="actions" class="actions">
-            <button id="downloadBtn" class="action-btn download-btn">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                </svg>
-                Descargar
-            </button>
-            <button id="copyBtn" class="action-btn copy-btn">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                </svg>
-                Copiar
-            </button>
-            <button id="clearBtn" class="action-btn clear-btn">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
-                Limpiar
-            </button>
-        </div>
-    </div>
-
-    <div id="toast" class="toast"></div>
-
-    <!-- Enlace a tu archivo JS externo -->
-    <script src="scripts.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
