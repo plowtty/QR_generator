@@ -200,7 +200,7 @@ export class QRApp {
 
     renderContentSummary() {
         const config = getContentTypeConfig(this.state.contentType);
-        this.contentTypeEyebrow.textContent = `Tipo seleccionado · ${config.icon}`;
+        this.contentTypeEyebrow.textContent = `Selected type · ${config.icon}`;
         this.contentTypeTitle.textContent = config.label;
         this.contentTypeDescription.textContent = config.detail;
     }
